@@ -27,7 +27,6 @@ const mainController = {
                 res.status(500).send(error.message);
             } else {
                 const data = response.rows[0]
-                console.log("Requête réussie", response.rows[0]);
                     if(data.password === req.body.oldPassword) {
                         dataMapper.updateUser(data.id, req.body.password,(error, response) => {
                             if (error) {
