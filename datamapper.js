@@ -20,6 +20,7 @@ const dataMapper = {
         client.query(addAnUser, callback);
     },
     getUniqueUser: (id, callback) => {
+        console.log(id)
         const getAnUser = {
             text : `
                 SELECT * FROM "Users" WHERE id = $1`,
@@ -27,15 +28,15 @@ const dataMapper = {
         }
         client.query(getAnUser, callback);
     },
-    updateUser : (id, body, callback) => {
+    updateUser : (id, password, callback) => {
         const updateAnUser = {
             text : `
-            UPDATE Users
-            SET nom_colonne_1 = 'nouvelle valeur'
-            WHERE condition`
-            values : [id]
+            UPDATE "Users"
+            SET password =$1
+            WHERE id = $2 `,
+            values : [password, id]
         }
-        client.query(getAnUser, callback);
+        client.query(updateAnUser, callback);
     }
 }
 

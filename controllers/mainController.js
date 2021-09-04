@@ -21,23 +21,27 @@ const mainController = {
             }
         })
     },
-    async changeUserPassword : (req, res) => {
-       const ActualPassword = await dataMapper.getUniqueUser(req.session.user.id, (error, response) => {
+    changeUserPassword : async (req, res) => {
+       await dataMapper.getUniqueUser(req.session.user.id, (error, response) => {
             if (error) {
                 res.status(500).send(error.message);
             } else {
+                const data = response.rows[0]
                 console.log("Requête réussie", response.rows[0]);
+                    if(data.password === req.body.oldPassword) {
+                        dataMapper.updateUser(data.id, req.body.password,(error, response) => {
+                            if (error) {
+                                res.status(500).send(error.message);
+                             } else {
+                                console.log("Update du password effectué");
+                                res.status(200).send('its ok bro')
+                            }
+                        })
+                    } else {
+                        res.status(401).send("Wrong password")
+                    }
             }
         })
-        if (ActualPassword.user === req.session.user && ActualPassword.password === req.body.oldPassword) {
-            dataMapper.updateUser(ActualPassword.id, req.body,(error, response) => {
-                if (error) {
-                    res.status(500).send(error.message);
-                } else {
-                    console.log("Update du password effectué", response.rows[0]);
-                }
-            })
-        }
     },
 }
 
