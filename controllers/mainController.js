@@ -1,8 +1,4 @@
 const dataMapper = require('../dataMapper');
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
-const myPlaintextPassword = 's0/\/\P4$$w0rD';
-const someOtherPlaintextPassword = 'not_bacon';
 
 const mainController = {
     getUsersDetails : (req, res) => {
