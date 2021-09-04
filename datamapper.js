@@ -19,6 +19,24 @@ const dataMapper = {
         }
         client.query(addAnUser, callback);
     },
+    getUniqueUser: (id, callback) => {
+        const getAnUser = {
+            text : `
+                SELECT * FROM "Users" WHERE id = $1`,
+            values : [id]
+        }
+        client.query(getAnUser, callback);
+    },
+    updateUser : (id, body, callback) => {
+        const updateAnUser = {
+            text : `
+            UPDATE Users
+            SET nom_colonne_1 = 'nouvelle valeur'
+            WHERE condition`
+            values : [id]
+        }
+        client.query(getAnUser, callback);
+    }
 }
 
 module.exports = dataMapper;
