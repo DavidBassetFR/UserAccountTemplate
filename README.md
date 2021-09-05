@@ -1,6 +1,6 @@
 # UserAccountTemplate
 
-L'objectif de ce projet, c'est de créer une base de travail pré-défini pour avoir un seeding uniquement d'un utilisateur. (Paramétrable)
+L'objectif de ce projet, c'est de créer une base de travail pour avoir un seeding uniquement d'un utilisateur. (Paramétrable)
 
 Un CRUD pour l'utilisateur sera mis en place. 
 
