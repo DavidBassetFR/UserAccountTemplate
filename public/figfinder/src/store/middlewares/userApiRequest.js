@@ -7,15 +7,16 @@ const userMiddleware = (store) => (next) => (action) => {
     const options = {
       method: 'POST',
       url: 'http://localhost:3000/addNewUser',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      data: {
-        prenom: state.prenomValue,
-        nom: state.nomValue,
-        mail: state.emailValue,
-        password: state.passwordValue,
+      data:{ 
+        form : {
+          prenom:`${state.prenomValue}`,
+          nom:`${state.nomValue}`,
+          mail:`${state.emailValue}`,
+          password: `${state.passwordValue}`,
       }
+        
+      }
+      
 };
 console.log(options)
 axios.request(options).then(function (response) {

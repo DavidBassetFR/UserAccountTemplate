@@ -11,8 +11,8 @@ const mainController = {
         })
     },
     addNewUser : (req, res) => {
-        console.log(req.body)
-        dataMapper.createNewUser(req.body,(error, response) => {
+        console.log(req.body.form.prenom)
+        dataMapper.createNewUser(req.body.form,(error, response) => {
             if (error) {
                 res.status(500).send(error.message);
             } else {
