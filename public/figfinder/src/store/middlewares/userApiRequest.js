@@ -1,34 +1,30 @@
 import axios from 'axios';
-import { BASE_URL } from '../../settings';
+
+//import { BASE_URL } from '../../settings';
 const userMiddleware = (store) => (next) => (action) => {
   if (action.type === 'USER_IS_CREATING_ACCOUNT') {
     const state = store.getState();
-    const config = {
+    const options = {
       method: 'POST',
-      url: `${BASE_URL}/addNewUser`,
+      url: 'http://localhost:3000/addNewUser',
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `"Bearer ${state.accessToken}"`,
+        'Content-Type': 'application/x-www-form-urlencoded'
       },
-      body : {
-        nom: state.nom,
-        prenom : state.prenom,
-        email : state.email,
-        password : state.password,
+      data: {
+        prenom: state.prenomValue,
+        nom: state.nomValue,
+        mail: state.emailValue,
+        password: state.passwordValue,
       }
+};
+console.log(options)
+axios.request(options).then(function (response) {
+  console.log(response);
+}).catch(function (error) {
+  console.error(error);
+});}
 
-    };
-    axios(config)
-      .then((response) => {
-        store.dispatch({ type: 'THE USER HAS CREATED AN ACCOUNT'});
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-  next(action);
+next(action);
 };
 
 export default userMiddleware;

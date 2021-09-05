@@ -6,16 +6,18 @@ const UserForm = ({
     passwordValue, emailValue, prenomValue, nomValue, handleNewUserSubmit, changeValueOfInput
   }) => (
     
-  <form method="POST"  onSubmit={handleNewUserSubmit}>
+  <form onSubmit={handleNewUserSubmit}>
     <label>Nom</label>
-        <input onChange={() => changeValueOfInput('nom')} id="nom" type="text" value={nomValue}/>
+        <input onChange={(event) => changeValueOfInput('nom', event)} name="nom"id="nom" type="text" value={nomValue}/>
         <label>Prenom</label>
-        <input onChange={() => changeValueOfInput('prenom')} id="prenom"type="text" value={prenomValue}/>
+        <input onChange={(event) => changeValueOfInput('prenom', event)} name="prenom" id="prenom"type="text" value={prenomValue}/>
         <label>Email</label>
-        <input onChange={() => changeValueOfInput('email')} id="email" type="text" value={emailValue}/>
+        <input onChange={(event) => changeValueOfInput('email', event)} name="mail" id="mail" type="text" value={emailValue}/>
        
         <label>Password</label>
-         <input onChange={() => changeValueOfInput('password')} id="password" type="password" value={passwordValue}/>
+         <input onChange={(event) => changeValueOfInput('password', event)} name="password" id="password" type="password" value={passwordValue}/>
+    
+    <button type="SUBMIT"> Créer un compte </button>
     </form>
     
   );
@@ -34,13 +36,14 @@ const UserForm = ({
     emailValue: state.emailValue,
     prenomValue: state.prenomValue,
     nomValue : state.nomValue
-  });
+  }); 
   
   const mapDispatchToProps = (dispatch) => ({
-    changeValueOfInput: (valueofChange) => {
-      dispatch({ type: 'CHANGE_VALUE_OF_SOMETHING', value: valueofChange });
+    changeValueOfInput: (value, whatUserIsTyping) => {
+      dispatch({ type: 'CHANGE_VALUE_OF_SOMETHING', value: value, whatUserIsTyping: whatUserIsTyping.target.value  });
     },
-    handleNewUserSubmit: () => {
+    handleNewUserSubmit: (event) => {
+      event.preventDefault();
       dispatch({ type: 'USER_IS_CREATING_ACCOUNT' });
     },
   });

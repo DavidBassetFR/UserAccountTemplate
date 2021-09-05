@@ -8,7 +8,6 @@ const dataMapper = {
         client.query(promoList_query, callback);
     },
     createNewUser: (info, callback) => {
-        console.log(info);
         const addAnUser = {
             text : `
                 INSERT INTO "Users"

@@ -8,12 +8,9 @@ const initialState = {
   const reducer = (oldState = initialState, action) => {
     switch (action.type) {
       case 'CHANGE_VALUE_OF_SOMETHING':
-        const valueToChange = action.value
-        const newValue = valueToChange + 'Value'
-        console.log(newValue);
         return {
           ...oldState,
-          idofChange: action.idofChange,
+          [[action.value + 'Value']]: action.whatUserIsTyping,
         };
       default:
         return {

@@ -11,12 +11,11 @@ const mainController = {
         })
     },
     addNewUser : (req, res) => {
+        console.log(req.body)
         dataMapper.createNewUser(req.body,(error, response) => {
             if (error) {
                 res.status(500).send(error.message);
             } else {
-
-                console.log("Requête réussie", response);
                 res.status(200).send('Utilisateur bien ajouté');
             }
         })
