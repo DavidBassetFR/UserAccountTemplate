@@ -1,0 +1,25 @@
+.userForm{
+    
+    width: 500px;
+    height: 400px;
+   background-color: rgb(219, 219, 219);
+   text-align: center;
+   justify-content: center;
+}
+.userForm input{
+    height: 15px;  
+}
+.userForm button{
+    height: 50px;  
+    border: none;
+    margin-top: 1em;
+    border-radius: 10px;
+}
+.eachInputInUserForm {
+    padding-top: 1.5em;
+    margin: auto;
+    text-align: center;
+    display: flex;  
+    width: 250px;
+    justify-content: space-between;
+}

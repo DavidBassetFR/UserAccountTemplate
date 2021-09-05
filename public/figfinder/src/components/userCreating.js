@@ -1,22 +1,32 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import './userCreating.scss'
+
 
 const UserForm = ({
     passwordValue, emailValue, prenomValue, nomValue, handleNewUserSubmit, changeValueOfInput
   }) => (
     
-  <form onSubmit={handleNewUserSubmit}>
-    <label>Nom</label>
+  <form className="userForm" onSubmit={handleNewUserSubmit}>
+      <div className="eachInputInUserForm">
+        <label> Nom </label>
         <input onChange={(event) => changeValueOfInput('nom', event)} name="nom"id="nom" type="text" value={nomValue}/>
+      </div>
+        
+      <div className="eachInputInUserForm">
         <label>Prenom</label>
         <input onChange={(event) => changeValueOfInput('prenom', event)} name="prenom" id="prenom"type="text" value={prenomValue}/>
+      
+      </div> 
+      <div className="eachInputInUserForm">
         <label>Email</label>
         <input onChange={(event) => changeValueOfInput('email', event)} name="mail" id="mail" type="text" value={emailValue}/>
-       
+      </div>  
+      <div className="eachInputInUserForm">
         <label>Password</label>
-         <input onChange={(event) => changeValueOfInput('password', event)} name="password" id="password" type="password" value={passwordValue}/>
-    
+        <input onChange={(event) => changeValueOfInput('password', event)} name="password" id="password" type="password" value={passwordValue}/>
+      </div> 
     <button type="SUBMIT"> Créer un compte </button>
     </form>
     
