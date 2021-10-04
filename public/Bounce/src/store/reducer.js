@@ -3,6 +3,7 @@ const initialState = {
     emailValue : '',
     prenomValue: '',
     nomValue : '',
+    whichView : 'login',
   };
   
   const reducer = (oldState = initialState, action) => {
@@ -12,6 +13,12 @@ const initialState = {
           ...oldState,
           [[action.value + 'Value']]: action.whatUserIsTyping,
         };
+        case 'CHANGE_VIEW_FORM': {
+          return {
+            ...oldState,
+            whichView : action.value
+          }
+        }
       default:
         return {
           ...oldState,
