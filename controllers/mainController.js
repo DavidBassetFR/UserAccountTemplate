@@ -1,7 +1,9 @@
 const dataMapper = require('../dataMapper');
+var crypto = require('crypto');
 
 const mainController = {
     getUsersDetails : (req, res) => {
+        req.body.form.password = crypto.createHash('sha256').update(req.body.form.password).digest('base64');
         dataMapper.getUsers((error, response) => {
             if (error) {
                 res.status(500).send(error.message);
@@ -11,7 +13,7 @@ const mainController = {
         })
     },
     addNewUser : (req, res) => {
-        console.log(req.body.form.prenom)
+       req.body.form.password = crypto.createHash('sha256').update(req.body.form.password).digest('base64');
         dataMapper.createNewUser(req.body.form,(error, response) => {
             if (error) {
                 res.status(500).send(error.message);
@@ -21,6 +23,7 @@ const mainController = {
         })
     },
     changeUserPassword : async (req, res) => {
+        req.body.form.password = crypto.createHash('sha256').update(req.body.form.password).digest('base64');
        await dataMapper.getUniqueUser(req.session.user.id, (error, response) => {
             if (error) {
                 res.status(500).send(error.message);
